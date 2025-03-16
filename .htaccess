@@ -1,0 +1,17 @@
+RewriteEngine On
+
+# Ensure the file is not a directory and has a .php extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [NC,L]
+
+# for .env file
+# Disable Directory listing
+Options -Indexes
+
+# block files which needs to be hidden, specify .example extension of the file
+<Files ~ "\.(env|json|config.js|md|gitignore|gitattributes|lock)$">
+    Order allow,deny
+    Deny from all
+</Files>
+# for .env file
